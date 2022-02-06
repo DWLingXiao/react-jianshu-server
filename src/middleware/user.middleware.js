@@ -38,12 +38,17 @@ const verifyUser = async (ctx, next) => {
 
 const crpytPassword = async (ctx, next) => {
     const { password } = ctx.request.body
-    const salt = bcrypt.genSaltSync(10)
+    if (password) {
+        const salt = bcrypt.genSaltSync(10)
 
-    //哈希保存的是密文
-    const hash = bcrypt.hashSync(password, salt)
-    ctx.request.body.password = hash
-    await next()
+        //哈希保存的是密文
+        const hash = bcrypt.hashSync(password, salt)
+        ctx.request.body.password = hash
+        await next()
+    } else {
+        await next()
+    }
+
 }
 
 const verifyLogin = async (ctx, next) => {

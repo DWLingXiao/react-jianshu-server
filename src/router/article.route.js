@@ -6,7 +6,7 @@ const router = new Router({ prefix: '/article' })
 
 
 //上传图片
-router.post('/write/upload', auth, uploadImg)
+router.post('/write/upload', uploadImg)
 
 //写文章
 router.post('/write', auth, write)

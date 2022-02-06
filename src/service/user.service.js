@@ -47,13 +47,13 @@ class UserService {
                 writer_id: writer_id,
                 article_status: 1
             },
-            attributes: ['writer_id', 'id', 'article_title', 'watchNum', 'likes', 'article_status', 'article_img', 'context'],
+            attributes: ['writer_id', 'id', 'article_title', 'watchNum', 'likes', 'article_status', 'article_img', 'context', 'createdAt', 'updatedAt'],
         })
         const writer_info = await User.findOne({
             where: {
                 id: writer_id
             },
-            attributes: ['username', 'avatar', 'fans', 'user_sign']
+            attributes: ['username', 'avatar', 'fans', 'user_sign', 'createdAt']
         })
         return { count, rows, writer_info }
     }
