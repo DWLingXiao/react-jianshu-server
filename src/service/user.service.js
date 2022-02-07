@@ -72,7 +72,6 @@ class UserService {
                 ['fans', 'DESC']
             ]
         })
-        console.log({ count, rows })
         return { count, rows }
     }
 }
