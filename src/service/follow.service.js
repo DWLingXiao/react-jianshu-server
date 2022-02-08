@@ -1,6 +1,7 @@
+const Sequelize = require('sequelize')
 const Follow = require('../model/follow.model')
 const User = require('../model/user.model')
-
+const Op = Sequelize.Op
 
 class FollowService {
     async handleFollow(user_id, writer_id) {
@@ -86,7 +87,8 @@ class FollowService {
     async getList(user_id) {
         const { count, rows } = await Follow.findAndCountAll({
             where: {
-                user_id: user_id
+                user_id: user_id,
+                status: 1
             },
             include: [
                 {
@@ -107,7 +109,7 @@ class FollowService {
         const pageSize = 5
         const { count, rows } = await User.findAndCountAll({
             where: {
-                status: 1
+                status: 1,
             },
             attributes: ['id', 'username', 'avatar', 'fans', 'status'],
             offset: (page - 1) * pageSize,
